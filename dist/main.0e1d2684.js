@@ -141,7 +141,7 @@ var producer = function producer() {
     } else {
       alert("生产者或消费者正在工作中，请等一等...");
     }
-  }, 3000);
+  }, 500);
 };
 
 var consumer = function consumer() {
@@ -160,7 +160,7 @@ var consumer = function consumer() {
     } else {
       alert("生产者或消费者正在工作中，请等一等...");
     }
-  }, 3000);
+  }, 500);
 };
 
 $producer.onclick = function () {
@@ -173,4 +173,4 @@ $consumer.onclick = function () {
   consumer();
 };
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.d68f3c62.js.map
+//# sourceMappingURL=main.0e1d2684.js.map
