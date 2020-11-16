@@ -121,56 +121,48 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 var productLock = false;
 var maxLength = 10;
 var arrayLength = 0;
-var $producer = document.querySelector('.producer');
-var $consumer = document.querySelector('.consumer');
-var $produceSign = document.querySelector('.produceSign');
+var $producer = document.querySelector(".producer");
+var $consumer = document.querySelector(".consumer");
+var $produceSign = document.querySelector(".produceSign");
 
 var producer = function producer() {
-  setTimeout(function () {
-    if (!productLock) {
-      productLock = true;
+  var request = new XMLHttpRequest();
+  request.open("GET", "produce.js", false);
 
-      if (arrayLength < maxLength) {
-        arrayLength++;
-      } else {
-        alert('仓库已满，无法生产。');
-      }
-
-      $produceSign.innerHTML = '生产完成，' + '目前仓库中已有产品：' + arrayLength + '个';
-      productLock = false;
-    } else {
-      alert('生产者或消费者正在工作中，请等一等...');
+  request.onreadystatechange = function () {
+    if (request.readyState === 4 && request.status === 200) {
+      var script = document.createElement("script");
+      script.innerHTML = request.response;
+      document.body.appendChild(script);
     }
-  }, 500);
+  };
+
+  request.send();
 };
 
 var consumer = function consumer() {
-  setTimeout(function () {
-    if (!productLock) {
-      productLock = true;
+  var request = new XMLHttpRequest();
+  request.open("GET", "consume.js", false);
 
-      if (arrayLength) {
-        arrayLength--;
-      } else {
-        alert('仓库是空的，请等待生产者生产。');
-      }
-
-      $produceSign.innerHTML = '消费完成，' + '目前仓库中已有产品：' + arrayLength + '个';
-      productLock = false;
-    } else {
-      alert('生产者或消费者正在工作中，请等一等...');
+  request.onreadystatechange = function () {
+    if (request.readyState === 4 && request.status === 200) {
+      var script = document.createElement("script");
+      script.innerHTML = request.response;
+      document.body.appendChild(script);
     }
-  }, 500);
+  };
+
+  request.send();
 };
 
 $producer.onclick = function () {
   producer();
-  $produceSign.innerHTML = '生产中...';
+  $produceSign.innerHTML = "生产中...";
 };
 
 $consumer.onclick = function () {
   consumer();
-  $produceSign.innerHTML = '消费中...';
+  $produceSign.innerHTML = "消费中...";
 };
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.345b4e41.js.map
+//# sourceMappingURL=main.b3f42933.js.map
