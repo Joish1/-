@@ -1,0 +1,60 @@
+/* css reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+*::before, *:after {
+    box-sizing: border-box;
+}
+ul {
+    list-style: none;
+}
+/* style */
+body {
+    background: #eeeeee;
+}
+.globalHeader {
+    margin: 20px;
+}
+.siteList {
+    margin: 100px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.siteList .icon1 {
+    width: 72px;
+    height: 72px;
+    padding: 20px 0;
+}
+.siteList .icon {
+    width: 64px;
+    height: 64px;
+    padding: 20px 0;
+}
+.siteList .site {
+    width: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: white;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    padding: 20px 0;
+    cursor: pointer;
+}
+.siteList .site .text {
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    margin-top: 4px;
+}
+.globalMain .produceSign {
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/*# sourceMappingURL=/style.e308ff8e.css.map */

@@ -126,43 +126,51 @@ var $consumer = document.querySelector(".consumer");
 var $produceSign = document.querySelector(".produceSign");
 
 var producer = function producer() {
-  var request = new XMLHttpRequest();
-  request.open("GET", "produce.js", false);
+  setTimeout(function () {
+    if (!productLock) {
+      productLock = true;
 
-  request.onreadystatechange = function () {
-    if (request.readyState === 4 && request.status === 200) {
-      var script = document.createElement("script");
-      script.innerHTML = request.response;
-      document.body.appendChild(script);
+      if (arrayLength < maxLength) {
+        arrayLength++;
+      } else {
+        alert("仓库已满，无法生产。");
+      }
+
+      $produceSign.innerHTML = "生产完成，" + "目前仓库中已有产品：" + arrayLength + "个";
+      productLock = false;
+    } else {
+      alert("生产者或消费者正在工作中，请等一等...");
     }
-  };
-
-  request.send();
+  }, 3000);
 };
 
 var consumer = function consumer() {
-  var request = new XMLHttpRequest();
-  request.open("GET", "consume.js", false);
+  setTimeout(function () {
+    if (!productLock) {
+      productLock = true;
 
-  request.onreadystatechange = function () {
-    if (request.readyState === 4 && request.status === 200) {
-      var script = document.createElement("script");
-      script.innerHTML = request.response;
-      document.body.appendChild(script);
+      if (arrayLength) {
+        arrayLength--;
+      } else {
+        alert("仓库是空的，请等待生产者生产。");
+      }
+
+      $produceSign.innerHTML = "消费完成，" + "目前仓库中已有产品：" + arrayLength + "个";
+      productLock = false;
+    } else {
+      alert("生产者或消费者正在工作中，请等一等...");
     }
-  };
-
-  request.send();
+  }, 3000);
 };
 
 $producer.onclick = function () {
-  producer();
   $produceSign.innerHTML = "生产中...";
+  producer();
 };
 
 $consumer.onclick = function () {
-  consumer();
   $produceSign.innerHTML = "消费中...";
+  consumer();
 };
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.b3f42933.js.map
+//# sourceMappingURL=main.d68f3c62.js.map
